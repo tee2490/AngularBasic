@@ -9,8 +9,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  count: number = 0;
-  counter(type: string) {
-    type === 'incr' ? this.count++ : this.count--;
+  onSelect() {
+    console.log('select event is triggered');
   }
 }
