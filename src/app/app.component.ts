@@ -9,9 +9,13 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  isShift(event: any) {
-    if (event.shiftKey && event.key === 'Y') {
-      console.log('Shift + Y is pressed', event);
+  counter: number = 0;
+
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'ArrowUp') {
+      this.counter++;
+    } else if (event.key === 'ArrowDown') {
+      this.counter--;
     }
   }
 }

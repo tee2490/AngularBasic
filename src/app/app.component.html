@@ -1,1 +1,6 @@
-<input type="text" (keydown)="isShift($event)" />
+<div class="counter-container" tabindex="0" (keydown)="onKeyDown($event)">
+  <p class="counter">Counter: {{ counter }}</p>
+  <p class="instruction">
+    Use Up and Down arrow keys to <i><b>increment/decrement</b></i> the counter.
+  </p>
+</div>
