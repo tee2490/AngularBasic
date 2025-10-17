@@ -1,23 +1,7 @@
-<div class="cart-container">
-  <div class="form-group">
-    <label>Quantity:</label>
-    <input
-      type="number"
-      class="quantity-input"
-      [(ngModel)]="quantity"
-      min="0"
-    />
-  </div>
-  <div class="price-info">
-    <p>
-      Price per item: <span class="price">{{ pricePerItem }}</span>
-    </p>
-    <label>Total Price:</label>
-    <input
-      type="text"
-      class="total-price-input"
-      readonly
-      [(ngModel)]="totalPrice"
-    />
-  </div>
-</div>
+@if (num > 0) {
+  <h1>{{ num }} is greater than 0</h1>
+} @else if (num < 0) {
+  <h1>{{ num }} is less than 0</h1>
+} @else {
+  <h1>Number is 0</h1>
+}
