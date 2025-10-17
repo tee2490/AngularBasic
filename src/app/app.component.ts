@@ -9,6 +9,8 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  inputValue: string = 'Hello';
-  isDisabled: boolean = false;
+  count: number = 0;
+  counter(type: string) {
+    type === 'incr' ? this.count++ : this.count--;
+  }
 }

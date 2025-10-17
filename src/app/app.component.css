@@ -1,49 +1,42 @@
-/* Container Styling */
-div {
+.container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  margin: 0 auto;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  background-color: #1f2022;
-  max-width: 300px;
-  width: 90%;
-  height: auto;
-  box-sizing: border-box;
-}
-
-/* Heading Styling */
-h1 {
-  color: #fff;
-  font-size: 2rem;
-  font-weight: 400;
-  margin-bottom: 30px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
-}
-
-/* Input Styling */
-.styled-input {
-  width: 100%;
-  padding: 10px 15px;
-  font-size: 1rem;
-  border: 2px solid #ccc;
+  height: 100%;
+  border: 3px solid #3b8d78;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin-bottom: 15px;
+  width: 400px;
+  padding: 20px;
+  margin: 20px auto;
+}
+h1 {
+  text-align: center;
+  font-size: 35px;
+}
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: rgb(28, 183, 144);
+  color: black;
+  border: none;
+  font-size: 18px;
+  border-radius: 5px;
   cursor: pointer;
-  box-sizing: border-box;
 }
-
-.styled-input:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-.styled-input::placeholder {
-  color: #888;
-  opacity: 0.7;
+p {
+  margin: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  width: 25px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #3b8d78;
 }
