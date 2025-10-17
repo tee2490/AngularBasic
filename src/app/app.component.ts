@@ -9,7 +9,15 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  onSelect() {
-    console.log('select event is triggered');
+  onKeyPress(e: any) {
+    console.log(e.target.value);
+  }
+
+   onClick(e: MouseEvent, msg: string, num: number) {
+    console.log('Event: ', e);
+    console.log('Message: ', msg);
+    console.log('Number: ', num);
   }
 }
+
+
