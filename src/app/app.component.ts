@@ -10,6 +10,10 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  staticInput: string = 'Static two-way binding';
-  dynamicInput: string = '';
+  quantity: number = 1;
+  pricePerItem: number = 100;
+
+  get totalPrice(): number {
+    return this.quantity * this.pricePerItem;
+  }
 }

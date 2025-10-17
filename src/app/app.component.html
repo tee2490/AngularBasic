@@ -1,3 +1,23 @@
-<input type="text" [(ngModel)]="staticInput" /> <br /><br />
-<input type="text" [(ngModel)]="dynamicInput" />
-<h1>{{ dynamicInput }}</h1>
+<div class="cart-container">
+  <div class="form-group">
+    <label>Quantity:</label>
+    <input
+      type="number"
+      class="quantity-input"
+      [(ngModel)]="quantity"
+      min="0"
+    />
+  </div>
+  <div class="price-info">
+    <p>
+      Price per item: <span class="price">{{ pricePerItem }}</span>
+    </p>
+    <label>Total Price:</label>
+    <input
+      type="text"
+      class="total-price-input"
+      readonly
+      [(ngModel)]="totalPrice"
+    />
+  </div>
+</div>
