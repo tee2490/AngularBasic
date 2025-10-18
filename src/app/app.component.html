@@ -1,7 +1,6 @@
-@if (num > 0) {
-  <h1>{{ num }} is greater than 0</h1>
-} @else if (num < 0) {
-  <h1>{{ num }} is less than 0</h1>
-} @else {
-  <h1>Number is 0</h1>
-}
+<div *ngFor="let value of fullStackDev">
+  <ul>
+    <li>{{ value.id }}</li>
+    <li>{{ value.name }}</li>
+  </ul>
+</div>
