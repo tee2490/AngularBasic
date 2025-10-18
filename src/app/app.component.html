@@ -1,16 +1,14 @@
-<div style="text-align: center; font-size: 20px">
-  @switch (person.age) {
-    @case (10) {
-      <p>The person's age is 10 years old</p>
+<div class="container">
+  <label for="age">Enter your age: </label>
+  <input type="text" id="age" (input)="checkEligibility()" [(ngModel)]="age" />
+  <div class="message">
+    @switch (isEligible) {
+      @case (true) {
+        <p class="eligible">You are eligible to vote</p>
+      }
+      @default {
+        <p class="not-eligible">You are not eligible to vote!</p>
+      }
     }
-    @case (20) {
-      <p>The person's age is 20 years old</p>
-    }
-    @case (30) {
-      <p>The person's age is 30 years old</p>
-    }
-    @default {
-      <p>The person's age is {{ person.age }} years old</p>
-    }
-  }
+  </div>
 </div>

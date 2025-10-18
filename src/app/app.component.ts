@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  person = {
-    age: 28,
-  };
+  age: number = 0;
+  isEligible: boolean = false;
+
+  checkEligibility() {
+    this.isEligible = this.age >= 18;
+  }
 }
