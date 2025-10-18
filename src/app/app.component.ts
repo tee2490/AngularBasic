@@ -11,14 +11,23 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  applyVal = {
-    color: 'darkgreen',
-    'font-style': 'italic',
-    'font-size': '35px',
-    'font-weight': 'bold',
-  };
+  nm: string = '';
+  em: string = '';
+  emailIsValid: boolean = false;
+  formSubmitted: boolean = false;
 
-  // colorVal: string = 'navy';
-  // fontSize: string = '30px';
-  // isItalic: string = 'italic';
+  checkEmailValidation(em: string): void {
+    if (em.includes('@') && em.includes('.com')) {
+      this.emailIsValid = true;
+    } else {
+      this.emailIsValid = false;
+    }
+  }
+  showMessage() {
+    if (this.nm && this.emailIsValid) {
+      this.formSubmitted = true;
+    } else {
+      this.formSubmitted = false;
+    }
+  }
 }

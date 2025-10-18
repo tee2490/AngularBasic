@@ -1,69 +1,94 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: #333;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
+form {
+  width: 280px;
   margin: 0 auto;
+  background-color: #fff;
+  padding: 20px 50px 40px;
+  box-shadow: 1px 4px 10px 1px #aaa;
+  margin-top: 25px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-
-label {
-  font-size: 18px;
-  margin-bottom: 10px;
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
 }
-
-input[type="text"] {
-  padding: 8px 12px;
-  font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-  outline: none;
-  max-width: 300px;
+.form-group {
   margin-bottom: 20px;
 }
-
-.message {
-  text-align: center;
-}
-
-.eligible {
-  color: #28a745;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.not-eligible {
-  color: #dc3545;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-.updateStyles {
-  text-align: center;
-  background-color: #2f534b;
-  color: goldenrod;
-  font-size: 21px;
-  padding: 10px 20px;
-  margin: 0 auto;
-  border-radius: 5px;
-  width: 700px;
-}
-.italicText {
-  font-style: italic;
-}
-.letterFormat {
-  text-transform: uppercase;
+label {
+  display: block;
+  margin-bottom: 5px;
 }
 input {
-  width: 200px;
-  height: 25px;
-  font-size: 15px;
-  color: #fff;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
 }
-input.txt {
-  background-color: rgba(7, 145, 94, 0.956);
+button {
+  display: block;
+  margin: 20px auto 0;
+  width: 150px;
+  height: 40px;
+  border-radius: 25px;
+  border: none;
+  color: #000;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  transition: background-color 0.3s ease-in-out, letter-spacing 0.3s ease-in-out;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #c9c9c9;
+  letter-spacing: 0.2em;
+}
+form {
+  width: 280px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px 50px 40px;
+  box-shadow: 1px 4px 10px 1px #aaa;
+  margin-top: 25px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+}
+button {
+  display: block;
+  margin: 20px auto 0;
+  width: 150px;
+  height: 40px;
+  border-radius: 25px;
+  border: none;
+  color: #000;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  transition: background-color 0.3s ease-in-out, letter-spacing 0.3s ease-in-out;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #c9c9c9;
+  letter-spacing: 0.2em;
 }
