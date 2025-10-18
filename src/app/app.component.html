@@ -1,32 +1,8 @@
-<form *ngIf="!formSubmitted">
-  <h1>Submit Form</h1>
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input
-      type="text"
-      name="name"
-      [(ngModel)]="nm"
-      [ngStyle]="{ 'background-color': nm ? 'lightgreen' : '#ffb6c1' }"
-      required
-    />
-  </div>
-
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input
-      type="email"
-      name="email"
-      [(ngModel)]="em"
-      [ngStyle]="{
-        'background-color': emailIsValid ? 'lightgreen' : '#ffb6c1'
-      }"
-      (input)="checkEmailValidation(em)"
-      autocomplete="off"
-      required
-    />
-  </div>
-
-  <button type="submit" (click)="showMessage()">Submit</button>
-</form>
-
-<p *ngIf="formSubmitted">Form submitted successfully</p>
+@for (subject of subjectList; track subject.subCode ?? subject.name) {
+  @if (subject.subCode) {
+    <div class="subject-row">
+      <span class="code">Subject Code: {{ subject.subCode }},</span>
+      <span class="name">Subject Name: {{ subject.name }}</span>
+    </div>
+  }
+}
