@@ -1,8 +1,20 @@
-@for (subject of subjectList; track subject.subCode ?? subject.name) {
-  @if (subject.subCode) {
-    <div class="subject-row">
-      <span class="code">Subject Code: {{ subject.subCode }},</span>
-      <span class="name">Subject Name: {{ subject.name }}</span>
-    </div>
-  }
+<ng-template #itemTpl let-it>
+  <li>{{ it }}</li>
+</ng-template>
+
+<ng-template #noItems>
+  <p>No items to display!</p>
+</ng-template>
+
+@if (listItems?.length) {
+  <ul>
+    @for (it of listItems; track it) {
+      <ng-container
+        [ngTemplateOutlet]="itemTpl"
+        [ngTemplateOutletContext]="{ $implicit: it }">
+      </ng-container>
+    }
+  </ul>
+} @else {
+  <ng-container [ngTemplateOutlet]="noItems"></ng-container>
 }

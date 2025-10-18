@@ -11,22 +11,5 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  subjectList = [
-    {
-      subCode: 101,
-      name: 'JavaScript',
-    },
-    {
-      // subCode: 102,
-      name: 'C++',
-    },
-    {
-      subCode: 103,
-      name: 'NestJS',
-    },
-    {
-      subCode: 104,
-      name: 'Python',
-    },
-  ];
+  listItems: string[] = ['ItemA', 'ItemB', 'ItemC', 'ItemD'];
 }
