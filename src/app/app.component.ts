@@ -11,13 +11,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  colorMode: string = 'lightMode';
+  applyVal = {
+    color: 'darkgreen',
+    'font-style': 'italic',
+    'font-size': '35px',
+    'font-weight': 'bold',
+  };
 
-  toggleMode() {
-    if (this.colorMode === 'lightMode') {
-      this.colorMode = 'darkMode';
-    } else {
-      this.colorMode = 'lightMode';
-    }
-  }
+  // colorVal: string = 'navy';
+  // fontSize: string = '30px';
+  // isItalic: string = 'italic';
 }
