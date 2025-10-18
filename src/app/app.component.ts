@@ -10,22 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  fullStackDev = [
-    {
-      id: 1,
-      name: 'Angular',
-    },
-    {
-      id: 2,
-      name: 'React',
-    },
-    {
-      id: 3,
-      name: 'Next.js',
-    },
-    {
-      id: 4,
-      name: 'NestJS',
-    },
-  ];
+  person = {
+    age: 28,
+  };
 }
