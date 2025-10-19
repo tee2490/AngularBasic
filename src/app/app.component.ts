@@ -12,9 +12,10 @@ import { ChildComponent } from './child/child.component';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  displayMessage: string = 'Hello, Message from parent component';
-
-  showMsg() {
-    this.displayMessage = 'Child Component: Message Updated';
-  }
+  courses: { id: number; name: string }[] = [
+    { id: 1, name: 'JavaScript - Marathon Interview Questions Series' },
+    { id: 2, name: 'Mastering React With Interview Questions, eStore Project' },
+    { id: 3, name: 'Mastering TypeScript With Marathon Interview Questions' },
+    { id: 4, name: 'Mastering HTML,CSS,Sass,Bootstrap + Interview Questions' },
+  ];
 }

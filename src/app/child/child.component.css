@@ -1,22 +1,30 @@
-div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #49a591;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 500px;
+table {
+  width: 100%;
+  border-collapse: collapse;
   margin-bottom: 20px;
 }
 
-h2 {
-  font-size: 1.5rem;
+thead {
+  background-color: #5d5c5c;
+  font-weight: bold;
 }
 
-p {
-  font-size: 30px;
-  color: #1f2022;
-  margin: 15px 0;
+th {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+tbody {
+  background-color: #5d5c5c;
+}
+
+tr:nth-child(even) {
+  background-color: #5d5c5c;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
   text-align: center;
 }
