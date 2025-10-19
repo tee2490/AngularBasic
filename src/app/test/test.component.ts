@@ -1,9 +1,4 @@
-import {
-  AfterContentChecked,
-  AfterViewChecked,
-  AfterViewInit,
-  Component,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-test',
@@ -12,16 +7,12 @@ import {
   templateUrl: './test.component.html',
   styleUrl: './test.component.css',
 })
-export class TestComponent
-  implements AfterViewInit, AfterContentChecked, AfterViewChecked
-{
-  ngAfterContentChecked(): void {
-    console.log('ngAfterContentCheck() hook was invoked...');
+export class TestComponent implements OnInit, OnDestroy {
+  ngOnInit(): void {
+    console.log('Test Component: OnInit');
   }
-  ngAfterViewInit(): void {
-    console.log('ngAfterViewInit() hook was invoked...');
-  }
-  ngAfterViewChecked(): void {
-    console.log('ngAfterViewChecked() hook was invoked...');
+
+  ngOnDestroy(): void {
+    console.log('Test Component: OnDestroy');
   }
 }

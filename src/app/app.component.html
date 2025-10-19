@@ -1,9 +1,8 @@
-<h1>Component Updation Hooks</h1>
-<div class="parent-container">
-  <h2>Parent Component</h2>
-  <button (click)="sendDataToChild()">Generate Number</button>
+<div>
+  <h1>App Component</h1>
+  <button (click)="toggle()">Show/Hide</button>
 
-  <app-test>
-    <h3>Random Number: {{ dataFromParent }}</h3>
-  </app-test>
+  @if(displayComponent){
+  <app-test></app-test>
+  }
 </div>

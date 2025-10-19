@@ -1,4 +1,4 @@
-import { Component, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TestComponent } from './test/test.component';
 
@@ -9,15 +9,14 @@ import { TestComponent } from './test/test.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements DoCheck {
-  dataFromParent: number | undefined;
 
-  ngDoCheck(): void {
-    console.log('ngDoCheck() hook was invoked...');
+export class AppComponent implements OnInit {
+  displayComponent: boolean = true;
+  toggle(): void {
+    this.displayComponent = !this.displayComponent;
   }
 
-  sendDataToChild(): void {
-    let random = Math.floor(Math.random() * 10);
-    this.dataFromParent = random;
+  ngOnInit(): void {
+    console.log('App Component: OnInit');
   }
 }
