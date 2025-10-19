@@ -10,7 +10,14 @@ import { TestComponent } from './test/test.component';
   styleUrl: './app.component.css',
 })
 export class AppComponent implements DoCheck {
+  dataFromParent: number | undefined;
+
   ngDoCheck(): void {
     console.log('ngDoCheck() hook was invoked...');
+  }
+
+  sendDataToChild(): void {
+    let random = Math.floor(Math.random() * 10);
+    this.dataFromParent = random;
   }
 }

@@ -1,10 +1,8 @@
 import {
   AfterContentChecked,
-  AfterContentInit,
+  AfterViewChecked,
   AfterViewInit,
   Component,
-  ElementRef,
-  ViewChild,
 } from '@angular/core';
 
 @Component({
@@ -15,24 +13,15 @@ import {
   styleUrl: './test.component.css',
 })
 export class TestComponent
-  implements AfterContentInit, AfterContentChecked, AfterViewInit
+  implements AfterViewInit, AfterContentChecked, AfterViewChecked
 {
-  @ViewChild('wrapper') wrapper!: ElementRef;
-
-  ngAfterContentInit(): void {
-    console.log('ngAfterContentInit() was invoked...');
-  }
-
   ngAfterContentChecked(): void {
-    console.log('ngAfterContentChecked() was invoked...');
+    console.log('ngAfterContentCheck() hook was invoked...');
   }
-
   ngAfterViewInit(): void {
-    const divElement: HTMLElement = this.wrapper.nativeElement;
-    divElement.style.color = 'maroon';
-    divElement.style.fontSize = '15px';
-    divElement.style.fontWeight = '300';
-
-    console.log('ngAfterViewInit() was invoked...', this.wrapper);
+    console.log('ngAfterViewInit() hook was invoked...');
+  }
+  ngAfterViewChecked(): void {
+    console.log('ngAfterViewChecked() hook was invoked...');
   }
 }

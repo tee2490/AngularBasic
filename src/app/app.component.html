@@ -1,10 +1,9 @@
 <h1>Component Updation Hooks</h1>
 <div class="parent-container">
   <h2>Parent Component</h2>
+  <button (click)="sendDataToChild()">Generate Number</button>
+
   <app-test>
-    <div>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias quis,
-      laboriosam ea aspernatur ipsum tempora accusantium?
-    </div>
+    <h3>Random Number: {{ dataFromParent }}</h3>
   </app-test>
 </div>
