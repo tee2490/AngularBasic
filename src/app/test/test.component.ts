@@ -1,4 +1,5 @@
 import {
+  AfterContentChecked,
   AfterContentInit,
   Component,
   ContentChild,
@@ -14,7 +15,7 @@ import {
   templateUrl: './test.component.html',
   styleUrl: './test.component.css',
 })
-export class TestComponent implements AfterContentInit {
+export class TestComponent implements AfterContentInit, AfterContentChecked {
   @ViewChild('wrapper') wrapper!: ElementRef;
   @ContentChild('contentWrapper') content!: ElementRef;
 
@@ -22,5 +23,9 @@ export class TestComponent implements AfterContentInit {
     console.log('ngAfterContentInit() was invoked...');
     console.log('ngAfterContentInit() - wrapper: ', this.wrapper);
     console.log('ngAfterContentInit() - content: ', this.content);
+  }
+
+  ngAfterContentChecked(): void {
+    console.log('ngAfterContentChecked() hook was invoked...');
   }
 }
