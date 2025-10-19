@@ -9,9 +9,14 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 })
 export class TestComponent implements OnChanges {
   @Input() inputValue: string = '';
-  
+  previousValue: string | undefined;
+  currentValue: string | undefined;
+
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('Calling from the ngOnChanges hook...');
-    console.log(changes);
+    if (changes['inputValue']) {
+      this.previousValue = changes['inputValue'].previousValue;
+      this.currentValue = changes['inputValue'].currentValue;
+      console.log(changes);
+    }
   }
 }

@@ -11,4 +11,8 @@ import { TestComponent } from './test/test.component';
 })
 export class AppComponent {
   inputValue: string = 'New Value';
+
+  updateValue() {
+    this.inputValue = 'App Component';
+  }
 }
