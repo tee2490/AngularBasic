@@ -1,18 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TestComponent } from './test/test.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TestComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
-  inputValue: string = 'New Value';
+export class AppComponent implements OnInit {
+  count: number = 0;
+  countInterval: any;
 
-  updateValue() {
-    this.inputValue = 'App Component';
+  startCounter() {
+    this.countInterval = setInterval(() => {
+      if (this.count <= 5) {
+        console.log(this.count++);
+      } else {
+        clearInterval(this.countInterval);
+      }
+    }, 1000);
   }
+
+  ngOnInit(): void {
+    this.startCounter();
+  }
+
+  // constructor() {
+  //   this.startCounter();
+  // }
 }
