@@ -1,8 +1,5 @@
 <div>
-  <h1>App Component</h1>
-  <button (click)="toggle()">Show/Hide</button>
-
-  @if(displayComponent){
-  <app-test></app-test>
-  }
+  <h1>Parent Component</h1>
+  <button (click)="showMsg()">Update Message</button>
+  <app-child [receiveMessage]="displayMessage"></app-child>
 </div>
