@@ -1,27 +1,26 @@
 import {
+  AfterContentInit,
   Component,
-  Input,
-  OnChanges,
-  SimpleChanges,
+  ContentChild,
   DoCheck,
+  ElementRef,
+  ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-test',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './test.component.html',
   styleUrl: './test.component.css',
 })
-export class TestComponent implements DoCheck {
-  @Input() user: any;
-  private previousUserName: string | undefined;
+export class TestComponent implements AfterContentInit {
+  @ViewChild('wrapper') wrapper!: ElementRef;
+  @ContentChild('contentWrapper') content!: ElementRef;
 
-  ngDoCheck(): void {
-    if (this.user.name != this.previousUserName) {
-      this.previousUserName = this.user.name;
-      console.log('ngDoCheck called - User name changed to: ', this.user.name);
-    }
+  ngAfterContentInit(): void {
+    console.log('ngAfterContentInit() was invoked...');
+    console.log('ngAfterContentInit() - wrapper: ', this.wrapper);
+    console.log('ngAfterContentInit() - content: ', this.content);
   }
 }

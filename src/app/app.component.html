@@ -1,5 +1,13 @@
-<h1>Component Updation Hook</h1>
-<div>
-  <app-test [user]="user"></app-test>
-  <button (click)="changeUserName()">Change User Name</button>
+<h1>Component Updation Hooks</h1>
+<div class="parent-container">
+  <h2>Parent Component</h2>
+  <button (click)="sendDataToChild()">Generate Number</button>
+
+  <app-test>
+    <h3>{{ dataFromParent }}</h3>
+    <div #contentWrapper>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias quis,
+      laboriosam ea aspernatur ipsum tempora accusantium?
+    </div>
+  </app-test>
 </div>
