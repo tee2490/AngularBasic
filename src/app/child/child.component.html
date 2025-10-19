@@ -1,14 +1,1 @@
-<table border="1">
-  <thead>
-    <th>ID</th>
-    <th>Name</th>
-  </thead>
-  <tbody>
-    @for (item of showData; track item.id) {
-      <tr>
-        <td>{{ item.id }}</td>
-        <td>{{ item.name }}</td>
-      </tr>
-    }
-  </tbody>
-</table>
+<button (click)="emitEvent()">Click Me</button>

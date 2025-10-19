@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-child',
@@ -9,5 +10,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './child.component.css',
 })
 export class ChildComponent {
-  @Input() showData: { id: number; name: string }[] = [];
+  @Output() myEvent = new EventEmitter();
+
+  emitEvent() {
+    this.myEvent.emit('Event emitted from child component');
+  }
 }
