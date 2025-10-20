@@ -1,9 +1,5 @@
-<h2>Parent Component</h2>
-<button (click)="addItem()">Add Item</button>
-
-@if (itemsArr.length > 0) {
-  <app-child
-    [items]="itemsArr"
-    (itemDeleted)="deleteItem($event)"
-  ></app-child>
-}
+<div>
+  <h2>App Component</h2>
+  <button #btnIncr (click)="incrChildCounter()">Increment Counter</button>
+  <app-child></app-child>
+</div>

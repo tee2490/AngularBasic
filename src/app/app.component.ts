@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,19 +11,17 @@ import { ChildComponent } from './child/child.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
-  itemsArr: string[] = ['Item 1', 'Item 2', 'Item 3'];
+export class AppComponent implements AfterViewInit {
+  @ViewChild(ChildComponent) childComponent?: ChildComponent;
+  @ViewChild('btnIncr') btnRef?: ElementRef<HTMLButtonElement>;
 
-  addItem() {
-    const newItem = `Item ${this.itemsArr.length + 1}`;
-    this.itemsArr.push(newItem);
+  incrChildCounter() {
+    console.log(this.childComponent);
+    this.childComponent?.incrCounter();
   }
-  deleteItem(index: number) {
-    if (index >= 0 && index < this.itemsArr.length) {
-      this.itemsArr.splice(index, 1);
+  ngAfterViewInit(): void {
+    if (this.btnRef?.nativeElement) {
+      this.btnRef.nativeElement.innerHTML = 'Counter ++';
     }
-  }
-  ngOnInit(): void {
-    console.log('App Component is initialized');
   }
 }

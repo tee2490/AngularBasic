@@ -1,11 +1,4 @@
 <div>
   <h3>Child Component</h3>
-  <ul>
-    @for (item of items; track $index; let i = $index) {
-      <li>
-        {{ item }}
-        <button (click)="deleteIndex(i)">Delete</button>
-      </li>
-    }
-  </ul>
+  <p>Counter Value: {{ count }}</p>
 </div>
