@@ -1,5 +1,9 @@
-<app-child (myEvent)="receiveChildEvent($event)"></app-child>
-<div>
-  <h2>Parent Component</h2>
-  <p>{{ message }}</p>
-</div>
+<h2>Parent Component</h2>
+<button (click)="addItem()">Add Item</button>
+
+@if (itemsArr.length > 0) {
+  <app-child
+    [items]="itemsArr"
+    (itemDeleted)="deleteItem($event)"
+  ></app-child>
+}

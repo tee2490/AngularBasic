@@ -1,4 +1,4 @@
-import { Component, Output } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventEmitter } from '@angular/core';
 
@@ -9,10 +9,18 @@ import { EventEmitter } from '@angular/core';
   templateUrl: './child.component.html',
   styleUrl: './child.component.css',
 })
-export class ChildComponent {
-  @Output() myEvent = new EventEmitter();
+export class ChildComponent implements OnInit, OnDestroy {
+  @Input() items: string[] = [];
+  @Output() itemDeleted = new EventEmitter<number>();
 
-  emitEvent() {
-    this.myEvent.emit('Event emitted from child component');
+  deleteIndex(index: number) {
+    this.itemDeleted.emit(index);
+  }
+
+  ngOnInit(): void {
+    console.log('Child Component is initialized');
+  }
+  ngOnDestroy(): void {
+    console.log('Child Component is destroyed');
   }
 }
