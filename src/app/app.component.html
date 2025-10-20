@@ -1,5 +1,14 @@
 <div>
   <h2>App Component</h2>
-  <button #btnIncr (click)="incrChildCounter()">Increment Counter</button>
-  <app-child></app-child>
+  <app-child>
+    <section>
+      <h3>Heading</h3>
+      <p #showPara>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, quo
+        quod? Doloremque at vel in praesentium asperiores minus explicabo,
+        dolore dolor officiis, est fugiat hic ullam cum. Vero, distinctio
+        accusantium.
+      </p>
+    </section>
+  </app-child>
 </div>

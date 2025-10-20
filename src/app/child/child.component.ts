@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ContentChild,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,10 +14,15 @@ import { CommonModule } from '@angular/common';
   templateUrl: './child.component.html',
   styleUrl: './child.component.css',
 })
-export class ChildComponent {
-  count: number = 0;
+export class ChildComponent implements AfterContentInit {
+  @ContentChild('showPara') paraRef?: ElementRef;
+  // @ViewChild('showPara') paraRef?: ElementRef;
 
-  incrCounter() {
-    this.count++;
+  ngAfterContentInit(): void {
+    const content = this.paraRef?.nativeElement;
+    content.style.fontStyle = 'Italic';
+    content.style.fontWeight = '350';
+    content.style.color = '#afeeee';
+    console.log(this.paraRef);
   }
 }
