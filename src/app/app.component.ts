@@ -11,10 +11,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  weightInPounds: number = 0;
-  weightInKilograms: number = 0;
-
-  convertWeight() {
-    this.weightInKilograms = this.weightInPounds * 0.453592;
-  }
+  userDetails = {
+    name: 'User',
+    email: 'user@example.com',
+    address: {
+      street: '23 Main St',
+      city: 'ChiangMai',
+      state: 'Thailand',
+      zip: 88901,
+    },
+  };
 }
