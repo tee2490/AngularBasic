@@ -11,14 +11,21 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  userDetails = {
-    name: 'User',
-    email: 'user@example.com',
-    address: {
-      street: '23 Main St',
-      city: 'ChiangMai',
-      state: 'Thailand',
-      zip: 88901,
+  showJson: boolean = false;
+
+  students = [
+    { name: 'user a', age: 21, gender: 'female', major: 'computer science' },
+    {
+      name: 'user b',
+      age: 23,
+      gender: 'male',
+      major: 'electrical engineering',
     },
-  };
+    { name: 'user c', age: 20, gender: 'male', major: 'sociology' },
+    { name: 'user d', age: 25, gender: 'female', major: 'biomedical science' },
+  ];
+
+  toggleJson() {
+    this.showJson = !this.showJson;
+  }
 }

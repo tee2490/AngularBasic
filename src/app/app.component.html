@@ -1,11 +1,30 @@
-    <h1>User Information</h1>
-    <div class="user-info">
-      <div class="info-block">
-        <h4>Without JSON</h4>
-        <p>{{ userDetails }}</p>
-      </div>
-      <div class="info-block">
-        <h4>With JSON</h4>
-        <pre>{{ userDetails | json | uppercase }}</pre>
-      </div>
-    </div>
+<h1>Student List</h1>
+<table border="1" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Major</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (student of students; track student) {
+      <tr>
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.gender }}</td>
+        <td>{{ student.major }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<button type="button" (click)="toggleJson()">JSON Format</button>
+
+@if (showJson) {
+  <div>
+    <h2>JSON Format</h2>
+    <pre>{{ students | json | titlecase }}</pre>
+  </div>
+}
