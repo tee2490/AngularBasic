@@ -1,16 +1,1 @@
-<div class="table-container">
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>State</th>
-      <th>Salary</th>
-    </tr>
-    @for (emp of employees; track $index) {
-      <tr>
-        <td>{{ emp.name | titlecase }}</td>
-        <td>{{ emp.state | slice:0:3 | uppercase }}</td>
-        <td>{{ emp.salary | currency:'USD' }}</td>
-      </tr>
-    }
-  </table>
-</div>
+<p>{{ sliceArr | slice : -2 }}</p>
