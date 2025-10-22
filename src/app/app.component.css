@@ -1,13 +1,56 @@
-h2 {
+h1 {
   text-align: center;
-  font-weight: 360;
-  font-size: 45px;
-  margin-top: 3px;
+  font-weight: 400;
+  font-size: 2.5rem;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
 }
+
+/* Centered div container for label and color picker */
 div {
-  background-color: #333;
-  border-radius: 10px;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 15px;
+  max-width: 500px;
+}
+
+/* Color picker input with modern style */
+#colorPicker {
+  background-color: #fff !important;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 20%;
+}
+
+/* Box that changes color dynamically */
+.color-box {
+  width: 100%;
+  max-width: 500px;
+  height: 250px;
+  border-radius: 15px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   padding: 20px;
-  width: 50%;
-  margin: 30px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+/* Styling the paragraph for better layout */
+p {
+  margin-top: 20px;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 480px;
+}
+label {
+  padding: 5px;
 }
