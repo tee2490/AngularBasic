@@ -1,3 +1,50 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
 h1 {
-  font-size: 5rem;
+  text-align: center;
+  font-weight: 300;
+}
+span {
+  letter-spacing: 10px;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+button {
+  padding: 8px 16px;
+  margin: 12px;
+  border-radius: 4px;
+  background-color: dodgerblue;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+.number-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sorted-output {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 16px;
+  padding: 16px;
+  background-color: #333;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 4px;
+}
+h2 {
+  text-align: center;
+  font-size: 50px;
+}
+li {
+  margin-bottom: 8px;
+  font-size: 28px;
+  text-align: center;
 }
