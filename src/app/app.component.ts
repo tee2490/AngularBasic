@@ -11,5 +11,10 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  pi: number = 3.14159;
+  weightInPounds: number = 0;
+  weightInKilograms: number = 0;
+
+  convertWeight() {
+    this.weightInKilograms = this.weightInPounds * 0.453592;
+  }
 }
