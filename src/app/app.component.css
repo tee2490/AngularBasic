@@ -1,0 +1,22 @@
+a {
+  display: block;
+  padding: 16px 28px;
+  margin: 20px auto;
+  width: 11%;
+  border: 2px solid #1f2022;
+  text-align: center;
+  text-decoration: none;
+  color: #1f2022;
+  background: white;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.25s ease-in-out;
+  z-index: 1;
+  border-radius: 2px;
+  cursor: pointer;
+}
+a:hover {
+  background-color: #333;
+  color: white;
+  transform: translate(0, 100%, 0);
+}
