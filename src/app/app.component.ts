@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, Inject, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
@@ -12,14 +12,18 @@ import { LogMessage2Service } from './services/log-message2.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [
-    { provide: LogMessage1Service, useClass: LogMessage1Service },
-    { provide: LogMessage1Service, useClass: LogMessage2Service },
+    { provide: 'LOG_MSG1', useClass: LogMessage1Service },
+    { provide: 'LOG_MSG2', useClass: LogMessage2Service },
   ],
 })
 export class AppComponent implements OnInit {
-  public logger = inject(LogMessage1Service);
+  constructor(
+    @Inject('LOG_MSG1') private logger: LogMessage1Service,
+    @Inject('LOG_MSG2') private logger2: LogMessage2Service
+  ) {}
 
   ngOnInit(): void {
     this.logger.log();
+    this.logger2.log();
   }
 }
