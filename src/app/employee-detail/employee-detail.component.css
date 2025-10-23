@@ -1,0 +1,48 @@
+.card {
+  max-width: 400px; /* Max width for the card */
+  margin: 2rem auto; /* Center the card with margin */
+  padding: 1.5rem; /* Inner spacing */
+  background-color: #e8e8e8; /* White background for the card */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Stack children vertically */ /* Center align children */
+}
+
+/* Title style */
+h1 {
+  font-size: 2rem; /* Responsive font size */
+  color: #333; /* Dark gray color */
+  margin-bottom: 1.5rem; /* Space below the title */
+  text-align: center; /* Center the title */
+}
+
+/* Paragraph styles */
+p {
+  margin: 0.5rem 0; /* Space between paragraphs */
+  color: #555;
+  font-size: 1.2rem;
+}
+
+/* Strong text style */
+strong {
+  color: #000; /* Black color for strong text */
+}
+
+/* Button style */
+button {
+  padding: 0.5rem 1rem; /* Inner spacing */
+  background-color: #007bff; /* Bootstrap primary color */
+  color: #fff; /* White text */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer on hover */
+  transition: background-color 0.3s; /* Smooth transition */
+  font-size: 1rem; /* Font size */
+  margin-top: 1rem; /* Space above the button */
+}
+
+/* Button hover effect */
+button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}

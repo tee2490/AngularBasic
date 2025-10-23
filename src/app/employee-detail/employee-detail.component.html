@@ -1,0 +1,15 @@
+<div class="card">
+  <h1>Employee Details</h1>
+  <div>
+    @if (id && name) {
+    <p><strong>Employee ID:</strong> {{ id }}</p>
+    <p><strong>Name:</strong> {{ name }}</p>
+    }
+  </div>
+  <div>
+    @if (!id || !name) {
+    <p>No employee details available.</p>
+    }
+  </div>
+  <button (click)="backToEmployee()">Back</button>
+</div>
