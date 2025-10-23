@@ -1,2 +1,15 @@
-<h1>Employee ID: {{ id }}</h1>
-<h1>Employee Name: {{ name }}</h1>
+<h1>Employees</h1>
+<div>
+  <ul>
+    @for (emp of employees; track $index) {
+    <li>
+      <a
+        href="#"
+        [routerLink]="['/employee']"
+        [queryParams]="{ id: emp.id, name: emp.name }"
+        >{{ emp.name }}</a
+      >
+    </li>
+    }
+  </ul>
+</div>
