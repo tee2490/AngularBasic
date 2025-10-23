@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { AppConfigService } from './services/app-config.service';
-import { AppUpdateService } from './services/app-update.service';
+import { Component, Inject } from '@angular/core';
+import { showGreetingMessage } from './dependencies/showGreeting';
 
 @Component({
   selector: 'app-root',
@@ -8,20 +7,16 @@ import { AppUpdateService } from './services/app-update.service';
   templateUrl: 'app.component.html',
   styleUrl: './app.component.css',
   providers: [
-    AppConfigService,
-    {
-      provide: 'APP_UPDATE',
-      useFactory: (configService: AppConfigService) =>
-        configService.getAppConfig(),
-      deps: [AppConfigService],
-    },
-    AppUpdateService,
+    { provide: 'GREETING_MSG_FACTORY', useFactory: showGreetingMessage },
+    { provide: 'GREETING_MSG_VALUE', useValue: 'Hello' },
   ],
 })
 export class AppComponent {
-  message: string;
-
-  constructor(private appUpdateService: AppUpdateService) {
-    this.message = this.appUpdateService.getAppUpdate();
+  constructor(
+    @Inject('GREETING_MSG_FACTORY') public factoryMsg: string,
+    @Inject('GREETING_MSG_VALUE') public valueMsg: string
+  ) {
+    console.log('useFactory Message: ', factoryMsg);
+    console.log('useValue Message: ', valueMsg);
   }
 }
