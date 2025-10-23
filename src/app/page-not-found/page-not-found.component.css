@@ -1,0 +1,16 @@
+.container {
+  padding: 40px;
+  background-color: white;
+  border-radius: 10px;
+  min-height: 100vh;
+  margin: 50px auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  font-size: 4rem;
+  color: #ff4a4a;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
