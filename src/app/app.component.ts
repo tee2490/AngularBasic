@@ -1,21 +1,17 @@
 import { Component } from '@angular/core';
-import { AlertMessage1Service } from './services/alert-message1.service';
-import { AlertMessage2Service } from './services/alert-message2.service';
+import { MessageService } from './services/message.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  template: ` <button (click)="displayAlert()">Show</button> `,
+  templateUrl: 'app.component.html',
   styleUrl: './app.component.css',
   providers: [
-    AlertMessage1Service,
-    { provide: AlertMessage2Service, useExisting: AlertMessage1Service },
+    { provide: MessageService, useFactory: () => new MessageService() },
   ],
 })
 export class AppComponent {
-  constructor(private alertMsg: AlertMessage1Service) {}
-
-  displayAlert() {
-    this.alertMsg.showAlert();
+  constructor(private msgService: MessageService) {
+    console.log(this.msgService.msg());
   }
 }
