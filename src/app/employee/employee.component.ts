@@ -1,18 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employee',
   standalone: true,
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.css',
 })
 export class EmployeeComponent {
-  employees = [
-    { empId: '101', empName: 'EmpA', empDept: 'General Mgmt Dept' },
-    { empId: '102', empName: 'EmpB', empDept: 'Marketing Dept' },
-    { empId: '103', empName: 'EmpC', empDept: 'HR Dept' },
-    { empId: '104', empName: 'EmpD', empDept: 'Sales Dept' },
-  ];
+  id: string = '';
+  name: string = '';
+
+  constructor(private route: ActivatedRoute) {
+    const params = this.route.snapshot.params;
+    this.id = params['id'];
+    this.name = params['name'];
+    console.log(`Emp_Id: ${this.id}, Emp_Name: ${this.name}`);
+  }
 }
