@@ -1,14 +1,21 @@
 import { Component } from '@angular/core';
-import { AdminDataService } from './services/admin-data.service';
-import { ADMIN_DATA } from './ADMIN_DATA/admin-data';
+import { AlertMessage1Service } from './services/alert-message1.service';
+import { AlertMessage2Service } from './services/alert-message2.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  templateUrl: './app.component.html',
+  template: ` <button (click)="displayAlert()">Show</button> `,
   styleUrl: './app.component.css',
-  providers: [{ provide: ADMIN_DATA, useValue: ADMIN_DATA }, AdminDataService],
+  providers: [
+    AlertMessage1Service,
+    { provide: AlertMessage2Service, useExisting: AlertMessage1Service },
+  ],
 })
 export class AppComponent {
-  constructor(public getAdmin: AdminDataService) {}
+  constructor(private alertMsg: AlertMessage1Service) {}
+
+  displayAlert() {
+    this.alertMsg.showAlert();
+  }
 }
