@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MessageService } from './services/message.service';
+import { AppConfigService } from './services/app-config.service';
+import { AppUpdateService } from './services/app-update.service';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +8,20 @@ import { MessageService } from './services/message.service';
   templateUrl: 'app.component.html',
   styleUrl: './app.component.css',
   providers: [
-    { provide: MessageService, useFactory: () => new MessageService() },
+    AppConfigService,
+    {
+      provide: 'APP_UPDATE',
+      useFactory: (configService: AppConfigService) =>
+        configService.getAppConfig(),
+      deps: [AppConfigService],
+    },
+    AppUpdateService,
   ],
 })
 export class AppComponent {
-  constructor(private msgService: MessageService) {
-    console.log(this.msgService.msg());
+  message: string;
+
+  constructor(private appUpdateService: AppUpdateService) {
+    this.message = this.appUpdateService.getAppUpdate();
   }
 }
