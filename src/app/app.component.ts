@@ -1,22 +1,20 @@
-import { Component, Inject } from '@angular/core';
-import { showGreetingMessage } from './dependencies/showGreeting';
+import { Component } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: 'app.component.html',
   styleUrl: './app.component.css',
-  providers: [
-    { provide: 'GREETING_MSG_FACTORY', useFactory: showGreetingMessage },
-    { provide: 'GREETING_MSG_VALUE', useValue: 'Hello' },
-  ],
+  imports: [FormsModule],
 })
 export class AppComponent {
-  constructor(
-    @Inject('GREETING_MSG_FACTORY') public factoryMsg: string,
-    @Inject('GREETING_MSG_VALUE') public valueMsg: string
-  ) {
-    console.log('useFactory Message: ', factoryMsg);
-    console.log('useValue Message: ', valueMsg);
+  user: { username: string } = { username: '' };
+
+  submitForm(myForm: NgForm) {
+    if (myForm.valid) {
+      alert('Submitted successfully, check console');
+      console.log(this.user);
+    }
   }
 }

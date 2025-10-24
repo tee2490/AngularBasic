@@ -1,1 +1,14 @@
-<h1>useFactory Vs. useValue</h1>
+<form #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
+  <div>
+    <label for="username">Name</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      required
+      [(ngModel)]="user.username"
+      autocomplete="off"
+    />
+  </div>
+  <button type="submit">Submit</button>
+</form>
