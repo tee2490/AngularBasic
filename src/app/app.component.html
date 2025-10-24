@@ -1,49 +1,6 @@
-<form class="form-container" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
-  <div>
-    <label for="name">Name:</label>
-    <input
-      type="text"
-      id="name"
-      name="name"
-      [(ngModel)]="user"
-      required
-      autocomplete="off"
-    />
-  </div>
-
-  <div>
-    <label for="email">Email:</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      [(ngModel)]="email"
-      autocomplete="off"
-      required
-    />
-  </div>
-
-  <div>
-    <label for="country">Country:</label>
-    <select name="select" id="country" [(ngModel)]="selectedCountry">
-      @for (country of countries; track country.value) {
-        <option [value]="country.value">
-          {{ country.name }}
-        </option>
-      }
-    </select>
-  </div>
-
-  <div>
-    <label for="city">City:</label>
-    <select name="city" id="city" [(ngModel)]="city">
-      @for (city of getCitiesByCountry(selectedCountry); track $index) {
-        <option [value]="city">
-          {{ city }}
-        </option>
-      }
-    </select>
-  </div>
-
-  <button type="submit">Submit</button>
-</form>
+<input
+  type="text"
+  [formControl]="usernameControl"
+  placeholder="Enter username"
+/>
+<button type="submit" (click)="showValue()">Show</button>

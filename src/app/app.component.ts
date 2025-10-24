@@ -1,46 +1,24 @@
 import { Component } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: 'app.component.html',
   styleUrl: './app.component.css',
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule],
 })
 export class AppComponent {
-  user: string = '';
-  email: string = '';
-  selectedCountry: string = '';
-  city: string = '';
+  usernameControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(3),
+    Validators.maxLength(10),
+    Validators.pattern('^[a-zA-Z0-9]+$'),
+  ]);
 
-  countries = [
-    { name: 'USA', value: 'usa' },
-    { name: 'Australia', value: 'aus' },
-    { name: 'UK', value: 'uk' },
-  ];
-
-  cities: { [key: string]: string[] } = {
-    usa: ['New York', 'Los Angeles', 'Chicago'],
-    aus: ['Sydney', 'Melbourne', 'Brisbane'],
-    uk: ['London', 'Manchester', 'Birmingham'],
-  };
-
-  getCitiesByCountry(country: string): string[] {
-    return this.cities[country] || [];
-  }
-
-  onSubmit(myForm: NgForm) {
-    if (myForm.valid) {
-      const formData = {
-        user: this.user,
-        email: this.email,
-        country: this.selectedCountry,
-        city: this.city,
-      };
-      console.log('Form Submitted', formData);
-    } else {
-      alert('Please fill up the fields');
-    }
+  showValue() {
+    console.log('Value: ', this.usernameControl.value);
+    console.log('Validation Status: ', this.usernameControl.valid);
+    console.log(this.usernameControl.errors);
   }
 }
