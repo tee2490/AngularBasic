@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { convertToUppercase } from './custom-validators/upperCase-validator';
+import { urlValidator } from './custom-validators/url-validator';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +15,19 @@ import { convertToUppercase } from './custom-validators/upperCase-validator';
   imports: [ReactiveFormsModule],
 })
 export class AppComponent {
-  myForm: FormGroup;
+  validateURL: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.myForm = this.fb.group({
-      name: ['', [Validators.required, convertToUppercase]],
+    this.validateURL = this.fb.group({
+      checkURL: ['', [Validators.required, urlValidator]],
     });
+  }
+  validate() {
+    if (!this.validateURL.valid) {
+      alert('Please enter correct URL');
+      return false;
+    } else {
+      return alert('URL is valid');
+    }
   }
 }
