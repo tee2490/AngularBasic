@@ -3,6 +3,7 @@ import {
   ReactiveFormsModule,
   FormGroup,
   FormControl,
+  FormArray,
   Validators,
 } from '@angular/forms';
 
@@ -14,23 +15,31 @@ import {
   imports: [ReactiveFormsModule],
 })
 export class AppComponent {
-  myForm: FormGroup;
+  employeeForm: FormGroup;
 
   constructor() {
-    this.myForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      age: new FormControl('', Validators.min(18)),
+    this.employeeForm = new FormGroup({
+      employees: new FormArray([]),
     });
   }
 
+  get employees(): FormArray {
+    return this.employeeForm.get('employees') as FormArray;
+  }
+
+  addEmployee(): void {
+    const employeeGroup = new FormGroup({
+      name: new FormControl('', Validators.required),
+      job: new FormControl('', Validators.required),
+    });
+    this.employees.push(employeeGroup);
+  }
+
   submitForm() {
-    const userAge = this.myForm.get('age')?.value;
-    if (userAge < 18) {
-      alert('Age must be 18 or older');
+    if (this.employeeForm.invalid) {
       return;
-    } else if (this.myForm.valid) {
-      console.log(this.myForm.value);
+    } else {
+      console.log(this.employeeForm.value);
     }
   }
 }
