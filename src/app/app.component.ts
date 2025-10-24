@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-
 import {
-  ReactiveFormsModule,
-  FormGroup,
   FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 
@@ -16,17 +15,35 @@ import {
 })
 export class AppComponent {
   myForm: FormGroup;
+  passwordFieldType: string = 'password';
+  passwordToggleIcon: string = 'bi bi-eye-slash';
 
   constructor(private fb: FormBuilder) {
     this.myForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(/^(?=.*[A-Z])(?=.*[@$!*&])(?=\S+$).*$/),
+        ],
+      ],
     });
   }
 
   formSubmit() {
     if (this.myForm.valid) {
-      console.log(this.myForm.value);
+      console.log('Form Submitted');
+    }
+  }
+
+  togglePasswordVisibility() {
+    if (this.passwordFieldType === 'password') {
+      this.passwordFieldType = 'text';
+      this.passwordToggleIcon = 'bi bi-eye-fill';
+    } else {
+      this.passwordFieldType = 'password';
+      this.passwordToggleIcon = 'bi bi-eye-slash';
     }
   }
 }

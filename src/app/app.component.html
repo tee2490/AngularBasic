@@ -1,54 +1,57 @@
 <div class="container">
   <form [formGroup]="myForm" (ngSubmit)="formSubmit()">
     <div class="mb-3">
-      <label for="inputEmail" class="form-label">Email</label>
-      <input
-        type="email"
-        id="inputEmail"
-        class="form-control"
-        formControlName="email"
-        required
-      />
-      @if (myForm.get('email')?.dirty && myForm.get('email')?.invalid) {
-      <div class="form-label text-danger">*Email required</div>
-      }
-
-      <p class="form-label text-warning">
-        Pristine State - {{ myForm.get("email")?.pristine }}
-      </p>
-      <p class="form-label text-warning">
-        Dirty State - {{ myForm.get("email")?.dirty }}
-      </p>
-    </div>
-    <div class="mb-3">
       <label for="inputPassword5" class="form-label">Password</label>
-      <input
-        type="password"
-        id="inputPassword5"
-        class="form-control"
-        aria-labelledby="passwordHelpBlock"
-        formControlName="password"
-        required
-      />
+      <div class="input-group">
+        <input
+          [type]="passwordFieldType"
+          id="inputPassword5"
+          class="form-control"
+          aria-labelledby="passwordHelpBlock"
+          formControlName="password"
+          required
+        />
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          (click)="togglePasswordVisibility()"
+        >
+          <i [class]="passwordToggleIcon"></i>
+        </button>
+      </div>
       @if (myForm.get('password')?.dirty && myForm.get('password')?.invalid) {
-      <div class="form-label text-danger">*Password required</div>
+      <div>
+        @if (myForm.get('password')?.errors?.['required']) {
+        <div class="form-label text-danger">*Password required</div>
+        }
+      </div>
+      } @if (myForm.get('password')?.errors?.['minlength']) {
+      <div class="form-label text-danger">
+        *Password must be 8 characters long
+      </div>
+      } @if (myForm.get('password')?.hasError('pattern') &&
+      !myForm.get('password')?.errors?.['required'] &&
+      !myForm.get('password')?.errors?.['minlength']) {
+      <div class="form-label text-danger">
+        *Password must contain at least one capital letter
+      </div>
+      } @if (myForm.get('password')?.hasError('pattern') &&
+      !myForm.get('password')?.errors?.['required'] &&
+      !myForm.get('password')?.errors?.['minlength']) {
+      <div class="form-label text-danger">
+        *Password must contain at least one special character
+      </div>
+      } @if (myForm.get('password')?.hasError('pattern') &&
+      myForm.get('password')?.value?.includes(' ') &&
+      !myForm.get('password')?.errors?.['required'] &&
+      !myForm.get('password')?.errors?.['minlength']) {
+      <div class="form-label text-danger">
+        *Password must not contain any white spaces
+      </div>
       }
-
-      <p class="form-label text-warning">
-        Pristine State - {{ myForm.get("password")?.pristine }}
-      </p>
-      <p class="form-label text-warning">
-        Dirty State - {{ myForm.get("password")?.dirty }}
-      </p>
     </div>
-    <div class="btn-group d-grid">
-      <button
-        class="btn btn-success"
-        type="submit"
-        [disabled]="myForm.pristine || myForm.invalid"
-      >
-        Submit
-      </button>
+    <div class="btn-group d-flex">
+      <button class="btn btn-success" type="submit">Submit</button>
     </div>
   </form>
 </div>
