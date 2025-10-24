@@ -1,32 +1,49 @@
-<div class="form-container">
-  <h1>Submit Form</h1>
-  <form #myForm="ngForm" (ngSubmit)="formSubmit(myForm)">
-    <div class="inputbox">
-      <input
-        type="text"
-        name="name"
-        ngModel
-        required
-        #name="ngModel"
-        autocomplete="off"
-      />
-      <span>Name</span>
-    </div>
-    <div class="inputbox">
-      <input
-        type="text"
-        name="email"
-        ngModel
-        required
-        #email="ngModel"
-        autocomplete="off"
-      />
-      <span>Email</span>
-    </div>
-    <div class="inputbox">
-      <button type="submit">Submit</button>
-      <button type="button" (click)="resetValue(myForm)">Reset</button>
-      <button type="button" (click)="setDefault(myForm)">Default Values</button>
-    </div>
-  </form>
-</div>
+<form class="form-container" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+  <div>
+    <label for="name">Name:</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      [(ngModel)]="user"
+      required
+      autocomplete="off"
+    />
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      [(ngModel)]="email"
+      autocomplete="off"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="country">Country:</label>
+    <select name="select" id="country" [(ngModel)]="selectedCountry">
+      @for (country of countries; track country.value) {
+        <option [value]="country.value">
+          {{ country.name }}
+        </option>
+      }
+    </select>
+  </div>
+
+  <div>
+    <label for="city">City:</label>
+    <select name="city" id="city" [(ngModel)]="city">
+      @for (city of getCitiesByCountry(selectedCountry); track $index) {
+        <option [value]="city">
+          {{ city }}
+        </option>
+      }
+    </select>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>

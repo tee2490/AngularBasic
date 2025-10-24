@@ -9,25 +9,38 @@ import { FormsModule, NgForm } from '@angular/forms';
   imports: [FormsModule],
 })
 export class AppComponent {
-  formSubmit(myForm: NgForm) {
+  user: string = '';
+  email: string = '';
+  selectedCountry: string = '';
+  city: string = '';
+
+  countries = [
+    { name: 'USA', value: 'usa' },
+    { name: 'Australia', value: 'aus' },
+    { name: 'UK', value: 'uk' },
+  ];
+
+  cities: { [key: string]: string[] } = {
+    usa: ['New York', 'Los Angeles', 'Chicago'],
+    aus: ['Sydney', 'Melbourne', 'Brisbane'],
+    uk: ['London', 'Manchester', 'Birmingham'],
+  };
+
+  getCitiesByCountry(country: string): string[] {
+    return this.cities[country] || [];
+  }
+
+  onSubmit(myForm: NgForm) {
     if (myForm.valid) {
-      const formValues = JSON.stringify(myForm.value);
-      console.log(formValues);
-      console.log(
-        '%c From submitted successfully',
-        'color: green; font-weight: 400; font-size: 15px'
-      );
+      const formData = {
+        user: this.user,
+        email: this.email,
+        country: this.selectedCountry,
+        city: this.city,
+      };
+      console.log('Form Submitted', formData);
     } else {
-      alert('Please fill up the required fields');
+      alert('Please fill up the fields');
     }
-  }
-  resetValue(myForm: NgForm) {
-    myForm.resetForm();
-  }
-  setDefault(myForm: NgForm) {
-    myForm.resetForm({
-      name: 'Default Name',
-      email: 'defaultId@gmail.com',
-    });
   }
 }
