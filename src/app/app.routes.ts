@@ -1,10 +1,18 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { formGuard } from './guards/form-guard';
+import { ParentComponent } from './parent/parent.component';
+import { Child1Component } from './child1/child1.component';
+import { Child2Component } from './child2/child2.component';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'form', component: LoginComponent, canDeactivate: [formGuard] },
+  {
+    path: 'parent',
+    component: ParentComponent,
+    canActivateChild: [authGuard],
+    children: [
+      { path: 'child1', component: Child1Component },
+      { path: 'child2', component: Child2Component },
+    ],
+  },
+  { path: '**', redirectTo: '/parent', pathMatch: 'full' },
 ];

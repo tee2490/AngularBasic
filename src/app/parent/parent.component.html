@@ -1,9 +1,21 @@
 <div class="container">
   <h2>Parent Component</h2>
   <ul>
-    <li><a routerLink="/parent/child1">Child 1</a></li>
-    <li><a routerLink="/parent/child2">Child 2</a></li>
+    <li><a href="#" routerLink="/parent/child1">Child 1</a></li>
+    <li><a href="#" routerLink="/parent/child2">Child 2</a></li>
   </ul>
   <hr />
+
+  <button type="button" (click)="enableRoutes()">
+    @if (!btnService.isButtonClicked()) {
+    <p style="color: rgb(249, 4, 4);">Note: Navigation to child routes is currently disabled.</p>
+    }
+    @else
+    {
+    <p style="color: rgb(112, 248, 112);">Child route navigation is enabled. You can navigate to Child 1 and Child 2.
+    </p>
+    }
+
+  </button>
   <router-outlet></router-outlet>
 </div>
