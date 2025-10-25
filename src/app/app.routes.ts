@@ -1,7 +1,10 @@
 import { Routes } from '@angular/router';
-import { AdminComponent } from './admin/admin.component';
-import { testGuard } from './guards/test-guard';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { formGuard } from './guards/form-guard';
 
 export const routes: Routes = [
-  { path: 'admin', component: AdminComponent, canActivate: [testGuard] },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'form', component: LoginComponent, canDeactivate: [formGuard] },
 ];
