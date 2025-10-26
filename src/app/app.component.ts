@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { concatMap, of } from 'rxjs';
+import { concatMap, interval, of, switchMap, take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,17 +7,16 @@ import { concatMap, of } from 'rxjs';
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
-  scrObs$ = of(1, 2, 3);
-  innerObs$ = of('A', 'B', 'C');
+  source$ = of(1, 2, 3);
   ngOnInit(): void {
-    this.scrObs$
+    this.source$
       .pipe(
-        concatMap((val) => {
-          console.log('Source Value: ', val);
+        switchMap((val) => {
+          console.log('Source value: ', val);
           console.log('Starting new observable');
-          return this.innerObs$;
+          return interval(1000).pipe(take(3));
         })
       )
-      .subscribe((res) => console.log('Reading' + res));
+      .subscribe((res) => console.log('Interval value: ' + res));
   }
 }
