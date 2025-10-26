@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { timer, interval } from 'rxjs';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +7,13 @@ import { timer, interval } from 'rxjs';
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
+  fetchData: string = '';
+  isLoading: boolean = true;
+
   ngOnInit(): void {
-    timer(0, 1000).subscribe((val) => console.log(`Timer value: ${val}`));
-    interval(1000).subscribe((val) => console.log(`Interval value: ${val}`));
+    timer(3000).subscribe(() => {
+      this.isLoading = false;
+      this.fetchData = 'Timer function executed...';
+    });
   }
 }
