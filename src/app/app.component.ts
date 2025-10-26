@@ -9,21 +9,24 @@ import { Observable } from 'rxjs';
   imports: [CommonModule],
 })
 export class AppComponent {
-  jsonData$: Observable<any> | undefined;
+  randomNum = Math.floor(Math.random() * 90) + 10;
+  coldObservable$ = new Observable<number>((observer) => {
+    observer.next(this.randomNum);
+    observer.complete();
+  });
 
   constructor() {
-    this.fetchData();
-  }
-
-  fetchData() {
-    this.jsonData$ = new Observable<any>((observer) => {
-      fetch('https://dummyjson.com/products/category-list')
-        .then((response) => response.json())
-        .then((data) => {
-          observer.next(data);
-          observer.complete();
-        })
-        .catch((err) => observer.error(err));
+    this.coldObservable$.subscribe({
+      next: (value) => console.log(`Subscriber 1: ${value}`),
     });
+    this.coldObservable$.subscribe({
+      next: (value) => console.log(`Subscriber 2: ${value}`),
+    });
+
+    setTimeout(() => {
+      this.coldObservable$.subscribe({
+        next: (value) => console.log(`Subscriber 3: ${value}`),
+      });
+    }, 2000);
   }
 }
