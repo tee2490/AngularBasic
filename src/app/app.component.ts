@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { map, of } from 'rxjs';
+import { filter, from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,14 @@ import { map, of } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    const obs$ = of('new york', 'london', 'berlin', 'chicago');
-    const newObs$ = obs$.pipe(map((str) => str.toUpperCase()));
+    const obs$ = from([
+      { name: 'XYZ', age: 25 },
+      { name: 'ABC', age: 35 },
+    ]);
 
-    newObs$.subscribe((val) => console.log(`New Observable: ${val}`));
+    const filterAge$ = obs$.pipe(filter((person) => person.age >= 30));
+    filterAge$.subscribe((val) =>
+      console.log(`Age above 30: \nName: ${val.name}, Age: ${val.age}`)
+    );
   }
 }
