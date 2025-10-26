@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
-import { of } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
-  constructor() {
-    const observable$ = of(
-      { name: 'User', age: 27 },
-      [1, 2, 3, 4],
-      () => 'Hello'
-    );
-    observable$.subscribe((val) => console.log(val));
+export class AppComponent implements OnInit {
+  ngOnInit(): void {
+    const m = new Map();
+    m.set(1, 'Hello');
+    m.set(2, 'Converting Map() to Observable');
+
+    const mapObs = from(m);
+    mapObs.subscribe((val) => console.log(val));
   }
 }
