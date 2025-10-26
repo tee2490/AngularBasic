@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { timer } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +7,18 @@ import { timer } from 'rxjs';
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
-  fetchData: string = '';
-  isLoading: boolean = true;
-
   ngOnInit(): void {
-    timer(3000).subscribe(() => {
-      this.isLoading = false;
-      this.fetchData = 'Timer function executed...';
+    const src1 = of(1, 2, 3);
+    const src2 = EMPTY;
+
+    src1.subscribe({
+      next: (value) => console.log('Source 1 Next: ', value),
+      complete: () => console.log('Source 1 Complete'),
+    });
+
+    src2.subscribe({
+      next: (value) => console.log('Source 2 Next: ', value),
+      complete: () => console.log('Source 2 Complete'),
     });
   }
 }
