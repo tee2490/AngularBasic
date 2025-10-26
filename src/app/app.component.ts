@@ -7,14 +7,41 @@ import { from, mergeMap, of } from 'rxjs';
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
-  outerObservable$ = from([1, 2, 3, 4, 5]);
-  innerObservable$ = (value: number) => of(value * 2);
+  users = [
+    { id: 1, name: 'UserA' },
+    { id: 2, name: 'UserB' },
+    { id: 3, name: 'UserC' },
+  ];
 
-  flattenObservable$ = this.outerObservable$.pipe(
-    mergeMap(this.innerObservable$)
-  );
-
+  courses = [
+    { courseId: 1, title: 'JavaScript - Marathon Interview Questions Series' },
+    {
+      courseId: 2,
+      title: 'Mastering React With Interview Questions,eStore Project',
+    },
+    {
+      courseId: 1,
+      title: 'Mastering TypeScript with Marathon Interview Questions',
+    },
+    {
+      courseId: 3,
+      title: 'Mastering CSS with Sass & Bootstrap + Interview Questions',
+    },
+    {
+      courseId: 3,
+      title: 'Mastering NodeJS with Interview Questions',
+    },
+  ];
   ngOnInit(): void {
-    this.flattenObservable$.subscribe((res) => console.log(res));
+    from(this.users)
+      .pipe(
+        mergeMap((user) => {
+          const courseData = this.courses.filter(
+            (course) => course.courseId === user.id
+          );
+          return of({ user, course: courseData });
+        })
+      )
+      .subscribe((res) => console.log('Combined Users & Courses: ', res));
   }
 }
