@@ -7,32 +7,27 @@ import { Observable } from 'rxjs';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  observable = new Observable((observer) => {
-    observer.next(1);
-    observer.next(2);
-    observer.next(3);
-    observer.error(5);
+  observable = new Observable<number>((observer) => {
+    let count = 0;
 
-    setTimeout(() => {
-      console.log('---After two seconds---');
-      observer.next(4);
-      observer.complete();
-    }, 2000);
+    const interval = setInterval(() => {
+      observer.next(count++);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+      console.log('Interval cleared...');
+    };
   });
 
   constructor() {
-    console.log('Before subscribe');
-    this.observable.subscribe({
-      next(x) {
-        console.log('Value: ', x);
-      },
-      error(e) {
-        console.error('Error occurred: ', e);
-      },
-      complete() {
-        console.log('Observable successfully executed');
-      },
+    const obs = this.observable.subscribe((data) => {
+      console.log('Data: ', data);
     });
-    console.log('After subscribe');
+
+    setTimeout(() => {
+      obs.unsubscribe();
+      console.log('Observable unsubscribed');
+    }, 5000);
   }
 }
