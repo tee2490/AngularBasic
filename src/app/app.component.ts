@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { from } from 'rxjs';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +8,11 @@ import { from } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    const m = new Map();
-    m.set(1, 'Hello');
-    m.set(2, 'Converting Map() to Observable');
+    const obs$ = interval(1000); // ส่งค่าทุก 1 วินาที
+    const obsSubscribe = obs$.subscribe((value) => console.log(value));
 
-    const mapObs = from(m);
-    mapObs.subscribe((val) => console.log(val));
+    setInterval(() => {
+      obsSubscribe.unsubscribe();
+    }, 10000); // ยกเลิกการ subscribe หลังจาก 10 วินาที
   }
 }
