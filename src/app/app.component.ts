@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  imports: [RouterLink, RouterOutlet],
+  imports: [],
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor() {
+    const observable = new Observable((observer) => {
+      console.log('Observable executed');
+    }).subscribe();
+  }
+}
