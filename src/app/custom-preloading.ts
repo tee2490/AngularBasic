@@ -6,12 +6,17 @@ import { EMPTY, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CustomPreLoadingStrategy implements PreloadingStrategy {
+  private userRole = 'user';
+
   preload(route: Route, fn: () => Observable<any>): Observable<any> {
-    if (route.data?.['preload']) {
-      console.log(`Preloading route: ${route.path}`);
+    if (
+      route.data?.['preload'] &&
+      route.data?.['roles']?.includes(this.userRole)
+    ) {
+      console.log(`Preloading route /${route.path} for role: ${this.userRole}`);
       return fn();
     }
-    console.log(`Skipping preload for route: ${route.path}`);
+    console.log(`Skipping preload for route: /${route.path}`);
     return EMPTY;
   }
 }

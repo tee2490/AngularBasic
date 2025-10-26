@@ -10,13 +10,13 @@ export const routes: Routes = [
     path: 'dashboard',
     loadComponent: () =>
       import('./components/dashboard/dashboard.component').then((m) => m.DashboardComponent),
-    data: { preload: true },
+    data: { preload: true, roles: ['admin', 'user'] },
   },
   {
     path: 'settings',
     loadComponent: () =>
       import('./components/settings/settings.component').then((m) => m.SettingsComponent),
-    data: { preload: false },
+    data: { preload: true, roles: ['admin'] },
   },
   {
     path: '**',
