@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { from, mergeMap, of } from 'rxjs';
+import { concatMap, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,41 +7,17 @@ import { from, mergeMap, of } from 'rxjs';
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
-  users = [
-    { id: 1, name: 'UserA' },
-    { id: 2, name: 'UserB' },
-    { id: 3, name: 'UserC' },
-  ];
-
-  courses = [
-    { courseId: 1, title: 'JavaScript - Marathon Interview Questions Series' },
-    {
-      courseId: 2,
-      title: 'Mastering React With Interview Questions,eStore Project',
-    },
-    {
-      courseId: 1,
-      title: 'Mastering TypeScript with Marathon Interview Questions',
-    },
-    {
-      courseId: 3,
-      title: 'Mastering CSS with Sass & Bootstrap + Interview Questions',
-    },
-    {
-      courseId: 3,
-      title: 'Mastering NodeJS with Interview Questions',
-    },
-  ];
+  scrObs$ = of(1, 2, 3);
+  innerObs$ = of('A', 'B', 'C');
   ngOnInit(): void {
-    from(this.users)
+    this.scrObs$
       .pipe(
-        mergeMap((user) => {
-          const courseData = this.courses.filter(
-            (course) => course.courseId === user.id
-          );
-          return of({ user, course: courseData });
+        concatMap((val) => {
+          console.log('Source Value: ', val);
+          console.log('Starting new observable');
+          return this.innerObs$;
         })
       )
-      .subscribe((res) => console.log('Combined Users & Courses: ', res));
+      .subscribe((res) => console.log('Reading' + res));
   }
 }
