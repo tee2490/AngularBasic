@@ -1,20 +1,26 @@
 import { Routes } from '@angular/router';
-import { FirstComponent } from './first/first.component';
-import { SecondComponent } from './second/second.component';
 
 export const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'first',
-    pathMatch: 'full',
+    path: 'home',
+    loadComponent: () => import('./components/home/home.component').then((m) => m.HomeComponent),
   },
+
   {
-    path: 'first',
-    component: FirstComponent,
-  },
-  {
-    path: 'second',
+    path: 'dashboard',
     loadComponent: () =>
-      import('./second/second.component').then((m) => m.SecondComponent),
+      import('./components/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+    data: { preload: true },
+  },
+  {
+    path: 'settings',
+    loadComponent: () =>
+      import('./components/settings/settings.component').then((m) => m.SettingsComponent),
+    data: { preload: false },
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full',
   },
 ];

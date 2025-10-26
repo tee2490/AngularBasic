@@ -7,6 +7,4 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css',
   imports: [RouterLink, RouterOutlet],
 })
-export class AppComponent {
-  title = 'myAngularProject';
-}
+export class AppComponent {}
