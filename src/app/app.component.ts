@@ -1,19 +1,20 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { fromEvent, map, Observable, of } from 'rxjs';
+import { from, mergeMap, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrl: './app.component.css',
-  imports: [CommonModule],
 })
 export class AppComponent implements OnInit {
-  cursorPosition$?: Observable<{ x: number; y: number }>;
+  outerObservable$ = from([1, 2, 3, 4, 5]);
+  innerObservable$ = (value: number) => of(value * 2);
+
+  flattenObservable$ = this.outerObservable$.pipe(
+    mergeMap(this.innerObservable$)
+  );
 
   ngOnInit(): void {
-    this.cursorPosition$ = fromEvent<MouseEvent>(window, 'mousemove').pipe(
-      map((e) => ({ x: e.clientX, y: e.clientY }))
-    );
+    this.flattenObservable$.subscribe((res) => console.log(res));
   }
 }
