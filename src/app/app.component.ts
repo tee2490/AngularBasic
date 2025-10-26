@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EMPTY, of } from 'rxjs';
+import { map, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,17 +8,9 @@ import { EMPTY, of } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    const src1 = of(1, 2, 3);
-    const src2 = EMPTY;
+    const obs$ = of('new york', 'london', 'berlin', 'chicago');
+    const newObs$ = obs$.pipe(map((str) => str.toUpperCase()));
 
-    src1.subscribe({
-      next: (value) => console.log('Source 1 Next: ', value),
-      complete: () => console.log('Source 1 Complete'),
-    });
-
-    src2.subscribe({
-      next: (value) => console.log('Source 2 Next: ', value),
-      complete: () => console.log('Source 2 Complete'),
-    });
+    newObs$.subscribe((val) => console.log(`New Observable: ${val}`));
   }
 }
