@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { interval } from 'rxjs';
+import { timer, interval } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +8,7 @@ import { interval } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    const obs$ = interval(1000); // ส่งค่าทุก 1 วินาที
-    const obsSubscribe = obs$.subscribe((value) => console.log(value));
-
-    setInterval(() => {
-      obsSubscribe.unsubscribe();
-    }, 10000); // ยกเลิกการ subscribe หลังจาก 10 วินาที
+    timer(0, 1000).subscribe((val) => console.log(`Timer value: ${val}`));
+    interval(1000).subscribe((val) => console.log(`Interval value: ${val}`));
   }
 }
