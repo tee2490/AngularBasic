@@ -1,18 +1,22 @@
-import { Component, computed, linkedSignal, signal } from '@angular/core';
+import { Component, effect } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { interval, map, take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrl: './app.component.css',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  value = signal(20);
-  linkedValue = linkedSignal({
-    source: this.value,
-    computation: () => this.value() * 2,
-  });
+  observable$ = interval(1000).pipe(
+    map(() => Math.floor(Math.random() * 100).toString()),
+    take(5)
+  );
+  randomNumber = toSignal(this.observable$, { initialValue: 'Loading...' });
 
-  // constructor() {
-  //   this.linkedValue.set(30);
-  // }
+  constructor() {
+    effect(() => {
+      console.log('Random Number: ', this.randomNumber());
+    });
+  }
 }
