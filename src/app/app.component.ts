@@ -1,22 +1,64 @@
-import { Component, effect } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { interval, map, take } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { Component, linkedSignal, signal } from '@angular/core';
+import { Item } from './interface/item-interface';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  imports: [CommonModule],
 })
 export class AppComponent {
-  observable$ = interval(1000).pipe(
-    map(() => Math.floor(Math.random() * 100).toString()),
-    take(5)
-  );
-  randomNumber = toSignal(this.observable$, { initialValue: 'Loading...' });
+  allItems = signal<Item[]>([]);
+  categories = signal<string[]>([]);
+  selectedCategory = signal('');
+  searchQuery = signal('');
 
-  constructor() {
-    effect(() => {
-      console.log('Random Number: ', this.randomNumber());
+  constructor(private http: HttpClient) {
+    this.fetchItems();
+  }
+
+  fetchItems(): void {
+    const apiUrl = 'https://dummyjson.com/products';
+
+    this.http.get<{ products: Item[] }>(apiUrl).subscribe({
+      next: (res) => {
+        const items = res.products;
+        this.allItems.set(items);
+
+        const categories: string[] = [
+          ...new Set(items.map((item) => item.category)),
+        ];
+        this.categories.set(categories);
+      },
+      error: (err) => console.error('Error: ', err),
     });
+  }
+
+  filteredItems = linkedSignal({
+    source: this.allItems,
+    computation: () => {
+      const items = this.allItems();
+      const category = this.selectedCategory();
+      const query = this.searchQuery();
+
+      return items.filter(
+        (item) =>
+          category === '' ||
+          (item.category === category &&
+            item.title.toLowerCase().includes(query.toLowerCase()))
+      );
+    },
+  });
+
+  updateCategory(event: Event) {
+    const category = (event.target as HTMLSelectElement).value;
+    this.selectedCategory.set(category);
+  }
+
+  updateSearchQuery(event: Event) {
+    const query = (event.target as HTMLInputElement).value;
+    this.searchQuery.set(query);
   }
 }
