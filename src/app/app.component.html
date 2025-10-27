@@ -1,1 +1,9 @@
-<h1>RxJS <span>switchMap()</span> Operator</h1>
+<div>
+  <button (click)="getData()">Get Data</button>
+</div>
+@if(loadData){
+<ng-container>
+  <h3>Response Data</h3>
+  <pre>{{ responseData | json }}</pre>
+</ng-container>
+}

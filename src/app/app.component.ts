@@ -1,22 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { concatMap, interval, of, switchMap, take } from 'rxjs';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrl: './app.component.css',
+  imports: [CommonModule],
 })
-export class AppComponent implements OnInit {
-  source$ = of(1, 2, 3);
-  ngOnInit(): void {
-    this.source$
-      .pipe(
-        switchMap((val) => {
-          console.log('Source value: ', val);
-          console.log('Starting new observable');
-          return interval(1000).pipe(take(3));
-        })
-      )
-      .subscribe((res) => console.log('Interval value: ' + res));
+export class AppComponent {
+  responseData: any;
+  loadData: boolean = false;
+
+  constructor(private http: HttpClient) {}
+
+  getData() {
+    this.http
+      .get('https://jsonplaceholder.typicode.com/users')
+      .subscribe((data) => {
+        this.responseData = data;
+        this.loadData = true;
+      });
   }
 }
