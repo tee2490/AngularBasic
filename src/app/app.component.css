@@ -1,97 +1,162 @@
-/* Header Styles */
-.mainHeading {
-  color: #fff;
-  font-size: 3rem;
-  text-align: center;
-  font-weight: 300;
-  margin-bottom: 1rem;
-}
-h1 {
-  font-size: 3rem;
-  text-align: center;
-  font-weight: 300;
-  margin-bottom: 1rem;
-  color: #fff;
-}
-h1 span {
-  color: goldenrod;
-}
-
-h2 {
-  font-size: 2rem;
-  margin: 1rem 0;
-  padding: 0.5rem;
-  text-align: center;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Container Styles */
+/* General container styling */
 .container {
   display: flex;
-  flex-wrap: wrap; /* Ensures responsiveness */
-  gap: 1rem;
-  background: #e8e8e8;
-  color: #333;
-  padding: 1.5rem;
-  border-radius: 15px;
-  margin: 1rem auto;
-  max-width: 900px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap; /* Ensures content wraps for smaller screens */
+  gap: 20px; /* Adds space between items */
+  justify-content: center; /* Centers items */
+  align-items: stretch; /* Ensures equal height for children */
+  padding: 20px; /* Adds padding for overall layout */
+  height: max-content; /* Set a fixed height for the container */
+  max-height: 100vh; /* Ensure responsiveness for larger screens */
 }
 
-.subDiv1,
-.subDiv2 {
-  flex: 1;
-  padding: 1rem;
-  background: #333;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Form container */
+.addItemForm {
+  flex: 1; /* Ensures it adjusts with the screen size */
+  min-width: 300px; /* Sets a minimum width for smaller screens */
+  max-width: 500px; /* Sets a maximum width for larger screens */
+  margin: 0 auto; /* Centers the form on small screens */
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Modern box shadow */
+  color: #023c76;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Even spacing for form content */
+  height: 350px; /* Matches the height of the cart */
 }
 
-.subDiv2 {
-  border-left: 1px solid #ccc;
-}
-
-.subDiv2 > h2 {
+.addItemForm h2 {
   text-align: center;
+  font-size: 1.8rem; /* Responsive font size */
+  margin-bottom: 15px;
+  color: #023c76;
 }
 
-/* Button Styles */
-button {
-  display: block;
-  margin: 1.5rem auto;
-  padding: 0.75rem 1.5rem;
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form labels */
+label {
+  margin-bottom: 5px;
   font-size: 1rem;
-  background-color: dodgerblue;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
+  color: #333; /* Neutral text color */
+}
+
+/* Form inputs */
+input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #023c76; /* Highlighted border on focus */
+}
+
+/* Submit button */
+button {
+  padding: 10px;
   cursor: pointer;
+  background-color: #ff4500;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #1a73e8;
+  background-color: #e63e00; /* Darker shade on hover */
 }
 
-/* Responsive Design */
+/* Cart container */
+.cart {
+  flex: 1; /* Ensures it adjusts with the screen size */
+  min-width: 300px;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Modern box shadow */
+  display: flex;
+  flex-direction: column;
+  height: 350px; /* Matches the height of the form */
+  overflow-y: auto; /* Makes the cart scrollable */
+}
+
+.cart h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #023c76;
+}
+
+/* List items */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1; /* Allows list to expand and use available space */
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f9f9f9; /* Light background for items */
+  color: #023c76;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Paragraph styling */
+p {
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: right;
+  color: #023c76;
+  font-size: 20px;
+}
+
+/* Media queries for responsiveness */
 @media (max-width: 768px) {
   .container {
-    flex-direction: column;
-    gap: 1.5rem;
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    height: auto; /* Adjust height for smaller screens */
+    padding: 10px;
   }
 
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
+  .addItemForm,
+  .cart {
+    width: 100%; /* Use full width on smaller screens */
+    height: auto; /* Remove height constraints on smaller screens */
+    margin: 0 0 20px 0; /* Add space between sections */
   }
 
   button {
-    font-size: 0.9rem;
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  li {
+    flex-direction: column; /* Stack content in list items */
+    align-items: flex-start;
+  }
+
+  li span {
+    margin-top: 5px;
   }
 }
