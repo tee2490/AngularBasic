@@ -1,0 +1,14 @@
+{
+  "products": [
+    {
+      "id": "102",
+      "name": "Samsung Galaxy S24 Ultra",
+      "price": 1300
+    },
+    {
+      "id": "103",
+      "name": "CoffeeDrip",
+      "price": 20
+    }
+  ]
+}
