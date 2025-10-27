@@ -6,11 +6,6 @@
       "email": "user@gmail.com"
     },
     {
-      "id": "102",
-      "name": "NewUserD",
-      "email": "newuserd@gmail.com"
-    },
-    {
       "id": 102,
       "name": "UserB",
       "email": "userb@gmail.com"
