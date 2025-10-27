@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +9,16 @@ import { Observable } from 'rxjs';
   imports: [CommonModule],
 })
 export class AppComponent {
-  responseData$: Observable<any> | undefined;
-  loadData: boolean = false;
-
   constructor(private http: HttpClient) {}
 
-  getData() {
-    this.responseData$ = this.http.get(
-      'https://jsonplaceholder.typicode.com/users'
-    );
-    this.loadData = true;
+  postData() {
+    const user = {
+      id: 102,
+      name: 'UserB',
+      email: 'userb@gmail.com',
+    };
+    this.http
+      .post('http://localhost:3000/users', user)
+      .subscribe((res) => console.log('User updated: ', res));
   }
 }
