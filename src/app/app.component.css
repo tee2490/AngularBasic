@@ -1,110 +1,61 @@
-.container {
-  width: 100%;
+h1 {
+  font-size: 55px;
+  text-align: center;
+  font-weight: 300;
+  margin-bottom: 25px;
+}
+span {
+  color: goldenrod;
+}
+h2 {
+  font-size: 33px;
+  margin: 15px;
   padding: 10px;
+}
+.container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 30px auto;
-}
-
-.todo-app {
-  width: 540px;
-  min-height: 55vh;
-  background-color: #fff;
-  padding: 40px 30px 70px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.app-title {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.app-title h1 {
-  color: #002765;
-  font-size: 40px;
-}
-
-.app-title i {
-  color: #002765;
-  font-size: 30px;
-}
-
-.row {
-  display: flex; /* Switch to flexbox for better alignment */
-  align-items: center;
-  width: 100%;
-  border-radius: 30px;
-  background-color: #edeef0;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-input {
-  flex: 1;
-  border: none;
-  padding: 12px 20px;
-  font-size: 17px;
-  background-color: transparent;
-  border-radius: 30px 0 0 30px;
-  outline: none;
-}
-
-.addBtn {
-  flex-shrink: 0; /* Prevent the button from shrinking */
-  width: 15vw;
-  padding: 12px;
-  font-size: 17px;
-  background-color: #002765;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 0 30px 30px 0;
-  border: none;
-  transition: all 0.25s ease;
-}
-
-.addBtn:hover {
-  filter: brightness(0.9);
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-
-.todo-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 15px;
+  background: #e8e8e8;
   color: #333;
-  background-color: #f4f4f4;
-  margin-bottom: 8px;
-  margin-right: 25px;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;
+  padding: 20px;
+  border-radius: 15px;
 }
-
-.removeBtn {
-  border: none;
-  padding: 8px 12px;
-  font-size: 14px;
-  background-color: #fc412c;
+.subDiv1 {
+  flex: 1;
+  padding: 20px;
+}
+.subDiv2 {
+  flex: 1;
+  padding: 20px;
+  border-left: 1px solid #ccc;
+  font-size: 25px;
+}
+.subDiv2 > h2 {
+  text-align: center;
+}
+ul {
+  list-style-type: none;
+  display: flex;
+  gap: 10px;
+  padding: 5px;
+  margin: 0;
+  background: #333;
+  justify-content: center;
+  border-radius: 15px;
+}
+li {
+  text-align: center;
   color: #fff;
-  cursor: pointer;
-  border-radius: 20px 30px 30px 0;
-  transition: all 0.25s ease;
+  border-radius: 10px;
+  padding: 10px 15px; /* Adjust padding for inline items */
+  font-size: 25px;
 }
-
-.removeBtn:hover {
-  filter: brightness(0.85);
-}
-
-button:hover {
-  filter: brightness(0.85);
+button {
+  display: block;
+  margin: 20px auto;
+  padding: 5px 10px;
+  font-size: 19px;
+  background-color: dodgerblue;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
 }

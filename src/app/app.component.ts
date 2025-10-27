@@ -1,27 +1,18 @@
-import { Component, signal, WritableSignal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrl: './app.component.css',
-  imports: [FormsModule],
 })
 export class AppComponent {
-  todoName: '' | undefined;
-  todos: WritableSignal<string[]> = signal([]);
+  arr = signal([1, 2, 3, 4]);
+  sumArr = computed(() => this.arr().reduce((sum, i) => sum + i));
 
-  addTodo(todo: HTMLInputElement): void {
-    const item = todo.value;
-    this.todos.update((todos) => [item, ...todos]);
-    todo.value = '';
-    todo.focus();
-  }
+  count = signal(20);
+  remainingCount = computed(() => 100 - this.count());
 
-  removeTodo(index: number): void {
-    this.todos.update((todos) => [
-      ...todos.slice(0, index),
-      ...todos.slice(index + 1),
-    ]);
+  modifyArr() {
+    this.arr.update((val) => [...val, 10]);
   }
 }
