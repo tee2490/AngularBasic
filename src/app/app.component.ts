@@ -1,40 +1,18 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, computed, linkedSignal, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  imports: [CommonModule, FormsModule],
+  templateUrl: 'app.component.html',
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-  newItemName: string = '';
-  newItemPrice: number | null = null;
-
-  items = [
-    { name: 'Product A', price: 10 },
-    { name: 'Product B', price: 15 },
-    { name: 'Product C', price: 12 },
-  ];
-
-  itemList = signal(this.items);
-
-  addItem() {
-    if (this.newItemName && this.newItemPrice !== null) {
-      const newItem = { name: this.newItemName, price: this.newItemPrice };
-      this.itemList.set([...this.itemList(), newItem]);
-
-      this.newItemName = '';
-      this.newItemPrice = null; //Reset fields
-    }
-  }
-
-  removeItem(item: { name: string; price: number }) {
-    this.itemList.set(this.itemList().filter((i) => i !== item));
-  }
-
-  totalPrice = computed(() => {
-    return this.itemList().reduce((acc, curr) => acc + curr.price, 0);
+  value = signal(20);
+  linkedValue = linkedSignal({
+    source: this.value,
+    computation: () => this.value() * 2,
   });
+
+  // constructor() {
+  //   this.linkedValue.set(30);
+  // }
 }
