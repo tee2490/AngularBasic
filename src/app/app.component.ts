@@ -1,26 +1,39 @@
-import { Component, computed, effect, signal } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrl: './app.component.css',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  addValue = 0;
+  enableListener = signal(false);
+
   constructor() {
-    effect(() => {
-      if (this.sumArr() > 30) alert(`Max value reached ${this.sumArr()}`);
-    });
-  }
+    if (typeof window !== 'undefined') {
+      effect((onCleanup) => {
+        if (this.enableListener()) {
+          const listener = () => console.log('Event triggered');
 
-  arr = signal([1, 2, 3, 4]);
-  sumArr = computed(() => this.arr().reduce((sum, i) => sum + i));
+          window.addEventListener('click', listener);
+          console.log('Listener added');
 
-  count = signal(40);
-  remainingCount = computed(() => 100 - this.count());
+          onCleanup(() => {
+            window.removeEventListener('click', listener);
+            console.log('Event listener removed');
+          });
+        }
+      });
+    }
+    console.log('Initial state: Listener disabled');
 
-  modifyArr() {
-    this.addValue += 10;
-    this.arr.update((val) => [...val, this.addValue]);
+    setTimeout(() => {
+      this.enableListener.set(true);
+      console.log('Signal set to true: Listener enabled');
+    }, 1000);
+
+    setTimeout(() => {
+      this.enableListener.set(false);
+      console.log('Signal set to false: Listener disabled');
+    }, 5000);
   }
 }
