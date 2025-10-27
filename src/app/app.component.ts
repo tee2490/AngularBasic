@@ -1,15 +1,25 @@
-import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrl: './app.component.css',
+  imports: [CommonModule],
 })
-export class AppComponent {
-  count = signal<number>(0);
+export class AppComponent implements OnInit {
+  cart = signal({
+    name: 'Product 1',
+    email: 'usera@gmail.com',
+  });
 
-  incrCounter() {
-    this.count.set(this.count() + 1);
-    console.log('Signal Value: ', this.count());
+  ngOnInit(): void {
+    console.log('Previous cart: ', this.cart());
+    this.cart.update((cartDetails) => ({
+      ...cartDetails,
+      qty: 3,
+      name: 'Product 2',
+    }));
+    console.log('Updated cart: ', this.cart());
   }
 }

@@ -18,16 +18,13 @@ button {
   margin: 20px auto;
 }
 div {
-  align-content: center;
-  border: 1px solid;
   margin: 20px auto;
-  border-radius: 15px;
+  width: 90vw;
+  padding: 15px;
   background: #e8e8e8;
-  width: 75vw;
-}
-p {
-  font-size: 65px;
-  margin-top: 0px;
-  text-align: center;
   color: #333;
+  border-radius: 15px;
+}
+pre {
+  font-size: 20px;
 }
