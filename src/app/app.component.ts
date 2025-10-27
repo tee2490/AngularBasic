@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrl: './app.component.css',
-  imports: [FormsModule, RouterOutlet],
 })
-export class AppComponent {}
+export class AppComponent {
+  count = signal<number>(0);
+
+  incrCounter() {
+    this.count.set(this.count() + 1);
+    console.log('Signal Value: ', this.count());
+  }
+}
