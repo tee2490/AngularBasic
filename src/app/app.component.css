@@ -1,5 +1,97 @@
-h1 {
+/* Header Styles */
+.mainHeading {
+  color: #fff;
+  font-size: 3rem;
   text-align: center;
-  font-size: 50px;
-  margin: 20px auto;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+h1 span {
+  color: goldenrod;
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Container Styles */
+.container {
+  display: flex;
+  flex-wrap: wrap; /* Ensures responsiveness */
+  gap: 1rem;
+  background: #e8e8e8;
+  color: #333;
+  padding: 1.5rem;
+  border-radius: 15px;
+  margin: 1rem auto;
+  max-width: 900px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.subDiv1,
+.subDiv2 {
+  flex: 1;
+  padding: 1rem;
+  background: #333;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subDiv2 {
+  border-left: 1px solid #ccc;
+}
+
+.subDiv2 > h2 {
+  text-align: center;
+}
+
+/* Button Styles */
+button {
+  display: block;
+  margin: 1.5rem auto;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: dodgerblue;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1a73e8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
 }

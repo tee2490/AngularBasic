@@ -1,39 +1,26 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, effect, signal, untracked } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  templateUrl: 'app.component.html',
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-  enableListener = signal(false);
+  counter1 = signal(0);
+  counter2 = signal(0);
 
-  constructor() {
-    if (typeof window !== 'undefined') {
-      effect((onCleanup) => {
-        if (this.enableListener()) {
-          const listener = () => console.log('Event triggered');
+  counterUpdate = effect(() => {
+    console.log(
+      `Counter 1: ${this.counter1()} \nCounter 2: ${untracked(() =>
+        this.counter2()
+      )}`
+    );
+  });
 
-          window.addEventListener('click', listener);
-          console.log('Listener added');
-
-          onCleanup(() => {
-            window.removeEventListener('click', listener);
-            console.log('Event listener removed');
-          });
-        }
-      });
-    }
-    console.log('Initial state: Listener disabled');
-
-    setTimeout(() => {
-      this.enableListener.set(true);
-      console.log('Signal set to true: Listener enabled');
-    }, 1000);
-
-    setTimeout(() => {
-      this.enableListener.set(false);
-      console.log('Signal set to false: Listener disabled');
-    }, 5000);
+  updateCounter1() {
+    this.counter1.update(() => this.counter1() + 1);
+  }
+  updateCounter2() {
+    this.counter2.update(() => this.counter2() + 1);
   }
 }
